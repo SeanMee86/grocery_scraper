@@ -7,6 +7,8 @@ import lombok.Setter;
 @Setter
 public class Grocery {
     private double base_price;
+    private String size_string;
+    private String brand_name;
     private String name;
     private Category[] categories;
 }
