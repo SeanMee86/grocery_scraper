@@ -19,10 +19,10 @@ public class Grocery {
     private double base_price;
     @Column(name = "name")
     private String name;
-    @Column(name = "size_string")
+    @Column(name = "size")
     private String size_string;
-    @Column(name = "brand_name")
+    @Column(name = "brand")
     private String brand_name;
-//    @Column(name = "categories")
-//    private Category[] categories;
+    @Column(name = "category_id")
+    private long categoryId;
 }
