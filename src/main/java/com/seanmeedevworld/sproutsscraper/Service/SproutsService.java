@@ -1,8 +1,8 @@
 package com.seanmeedevworld.sproutsscraper.Service;
 
-import com.seanmeedevworld.sproutsscraper.Models.SproutsGroceryItem;
+import com.seanmeedevworld.sproutsscraper.SproutsModels.SproutsGroceryItem;
 import com.seanmeedevworld.sproutsscraper.Models.GroceryItem;
-import com.seanmeedevworld.sproutsscraper.Models.Store;
+import com.seanmeedevworld.sproutsscraper.SproutsModels.SproutsStore;
 import com.seanmeedevworld.sproutsscraper.Repository.SproutsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
@@ -24,12 +24,12 @@ public class SproutsService implements GroceryService {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.set("cookie", "__stripe_mid=897ee8ba-fe41-4ed7-8d40-d88950b52cd82f706e; __stripe_sid=3a751511-8550-4563-9143-ff6f84cc125225a42f; _dd_s=rum=1&id=e70856c2-f015-4dc7-8292-0759fab07f01&created=1645479608367&expire=1645480576034; session-sprouts=.eJwtzEFvgjAABeD_0rMxbXUo3BbApURqTGZFLoSWqoVaGQWcXfbfJdkO7_LlvfcDinMn7RUE51JbOQNFK7tbaaTpQdB3wyRWWqvupujvjTQgAPKZXPmHUDuVkIMjiKrEn0-IBGbPKU5gPXLtt3lIvNRdUOrEYhc1j23418mwbkh9_6bR-yL9JJjWsSW3TcOPeqgyqsX_lhtmefhQp-PbyI3u-YI5UrdQGKanr_aU7dWujjGNDpC6BlHH_Dmx-2q8Md_fREmo8gNbtsWawD10q_zr4rZLuCrjdbqFVwFmYLCyK1QFAjQ5wp6Hfl_cDFun.FPWYgA.IZUnp5AXUJCL2SWYxMk746EHQw4");
-        HttpEntity<Store> requestEntity = new HttpEntity<>(headers);
-        ResponseEntity<Store> response = restTemplate.exchange(
+        HttpEntity<SproutsStore> requestEntity = new HttpEntity<>(headers);
+        ResponseEntity<SproutsStore> response = restTemplate.exchange(
                 "https://shop.sprouts.com/api/v2/store_products?category_id="+categoryNumber+"&limit=999",
                 HttpMethod.GET,
                 requestEntity,
-                Store.class
+                SproutsStore.class
         );
         ArrayList<String> meatsArray = new ArrayList<>(Arrays.asList("68", "76", "87", "92", "81", "92", "95", "100"));
         List<SproutsGroceryItem> sproutsGroceryItemList = Objects.requireNonNull(response.getBody()).getItems();
@@ -41,6 +41,10 @@ public class SproutsService implements GroceryService {
             }
         });
         sproutsRepository.saveAll(sproutsGroceryItemList);
+    }
+
+    public void crawl(String[] categoryIds) {
+
     }
 
     public void clearTable() {
