@@ -1,64 +1,69 @@
 package com.seanmeedevworld.sproutsscraper.Controllers;
 
-import com.seanmeedevworld.sproutsscraper.Models.Store;
-import com.seanmeedevworld.sproutsscraper.Service.GroceryService;
+import com.seanmeedevworld.sproutsscraper.Models.GroceryItem;
+import com.seanmeedevworld.sproutsscraper.Service.SproutsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
+@RequestMapping("/sprouts")
 public class SproutsScraperController {
 
     @Autowired
-    GroceryService groceryService;
+    SproutsService sproutsService;
 
     @GetMapping("/produce")
-    public Store getProduce() throws Exception {
-        return groceryService.callSproutsApi("1");
+    public ResponseEntity<List<GroceryItem>> getProduce() throws Exception {
+        return sproutsService.getGroceryByCategory(1);
     }
 
     @GetMapping("/deli")
-    public Store getDeli() throws Exception {
-        return groceryService.callSproutsApi("41");
+    public ResponseEntity<List<GroceryItem>> getDeli() throws Exception {
+        return sproutsService.getGroceryByCategory(41);
     }
 
     @GetMapping("/bakery")
-    public Store getBakery() throws Exception {
-        return groceryService.callSproutsApi("54");
+    public ResponseEntity<List<GroceryItem>> getBakery() throws Exception {
+        return sproutsService.getGroceryByCategory(54);
     }
 
     @GetMapping("/bulk")
-    public Store getBulk() throws Exception {
-        return groceryService.callSproutsApi("103");
+    public ResponseEntity<List<GroceryItem>> getBulk() throws Exception {
+        return sproutsService.getGroceryByCategory(103);
     }
 
     @GetMapping("/dairy")
-    public Store getDairy() throws Exception {
-        return groceryService.callSproutsApi("124");
+    public ResponseEntity<List<GroceryItem>> getDairy() throws Exception {
+        return sproutsService.getGroceryByCategory(124);
     }
 
     @GetMapping("/meats")
-    public Store getMeats() throws Exception {
-        return groceryService.callSproutsApi("67");
+    public ResponseEntity<List<GroceryItem>> getMeats() throws Exception {
+        return sproutsService.getGroceryByCategory(67);
     }
 
     @GetMapping("/aisles")
-    public Store getAisles() throws Exception {
-        return groceryService.callSproutsApi("132");
+    public ResponseEntity<List<GroceryItem>> getAisles() throws Exception {
+        return sproutsService.getGroceryByCategory(132);
     }
 
     @GetMapping("/frozen")
-    public Store getFrozen() throws Exception {
-        return groceryService.callSproutsApi("218");
+    public ResponseEntity<List<GroceryItem>> getFrozen() throws Exception {
+        return sproutsService.getGroceryByCategory(218);
     }
 
     @GetMapping("/vitamins")
-    public Store getVitamins() throws Exception {
-        return groceryService.callSproutsApi("230");
+    public ResponseEntity<List<GroceryItem>> getVitamins() throws Exception {
+        return sproutsService.getGroceryByCategory(230);
     }
 
-    @GetMapping("/booze")
-    public Store getBooze() throws Exception {
-        return groceryService.callSproutsApi("269");
+    @GetMapping("/alcohol")
+    public ResponseEntity<List<GroceryItem>> getAlcohol() throws Exception {
+        return sproutsService.getGroceryByCategory(269);
     }
 }
