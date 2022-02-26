@@ -1,5 +1,6 @@
 package com.seanmeedevworld.sproutsscraper.Models;
 
+import com.seanmeedevworld.sproutsscraper.SproutsModels.SproutsGroceryItem;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
