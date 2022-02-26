@@ -1,8 +1,9 @@
 package com.seanmeedevworld.sproutsscraper.Service;
 
-import com.seanmeedevworld.sproutsscraper.Models.Grocery;
+import com.seanmeedevworld.sproutsscraper.Models.SproutsGroceryItem;
+import com.seanmeedevworld.sproutsscraper.Models.GroceryItem;
 import com.seanmeedevworld.sproutsscraper.Models.Store;
-import com.seanmeedevworld.sproutsscraper.Repository.GroceryRepository;
+import com.seanmeedevworld.sproutsscraper.Repository.SproutsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -17,9 +18,9 @@ import java.util.Objects;
 public class GroceryService {
 
     @Autowired
-    GroceryRepository groceryRepository;
+    SproutsRepository sproutsRepository;
 
-    public void callSproutsApi(String categoryNumber) {
+    public void crawlSprouts(String categoryNumber) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.set("cookie", "__stripe_mid=897ee8ba-fe41-4ed7-8d40-d88950b52cd82f706e; __stripe_sid=3a751511-8550-4563-9143-ff6f84cc125225a42f; _dd_s=rum=1&id=e70856c2-f015-4dc7-8292-0759fab07f01&created=1645479608367&expire=1645480576034; session-sprouts=.eJwtzEFvgjAABeD_0rMxbXUo3BbApURqTGZFLoSWqoVaGQWcXfbfJdkO7_LlvfcDinMn7RUE51JbOQNFK7tbaaTpQdB3wyRWWqvupujvjTQgAPKZXPmHUDuVkIMjiKrEn0-IBGbPKU5gPXLtt3lIvNRdUOrEYhc1j23418mwbkh9_6bR-yL9JJjWsSW3TcOPeqgyqsX_lhtmefhQp-PbyI3u-YI5UrdQGKanr_aU7dWujjGNDpC6BlHH_Dmx-2q8Md_fREmo8gNbtsWawD10q_zr4rZLuCrjdbqFVwFmYLCyK1QFAjQ5wp6Hfl_cDFun.FPWYgA.IZUnp5AXUJCL2SWYxMk746EHQw4");
@@ -31,53 +32,55 @@ public class GroceryService {
                 Store.class
         );
         ArrayList<String> meatsArray = new ArrayList<>(Arrays.asList("68", "76", "87", "92", "81", "92", "95", "100"));
-        List<Grocery> groceryList = Objects.requireNonNull(response.getBody()).getItems();
-        groceryList.forEach(item -> {
+        List<SproutsGroceryItem> sproutsGroceryItemList = Objects.requireNonNull(response.getBody()).getItems();
+        sproutsGroceryItemList.forEach(item -> {
             if(meatsArray.contains(categoryNumber)){
                 item.setCategoryId(67);
             } else {
                 item.setCategoryId(Long.parseLong(categoryNumber));
             }
         });
-        groceryRepository.saveAll(groceryList);
+        sproutsRepository.saveAll(sproutsGroceryItemList);
     }
 
-    public void resetGroceryTable() {
-        groceryRepository.deleteAll();
+    public void clearSproutsTable() {
+        sproutsRepository.deleteAll();
     }
 
-    public void setGroceryTable() {
+    public void setSproutsTable() {
         System.out.println("Deli Call");
-        callSproutsApi("41");
+        crawlSprouts("41");
         System.out.println("Bakery Call");
-        callSproutsApi("54");
+        crawlSprouts("54");
         System.out.println("Bulk Call");
-        callSproutsApi("103");
+        crawlSprouts("103");
         System.out.println("Produce Call");
-        callSproutsApi("1");
+        crawlSprouts("1");
         System.out.println("Dairy Call");
-        callSproutsApi("124");
+        crawlSprouts("124");
         System.out.println("Meats Call");
-        callSproutsApi("68");
-        callSproutsApi("76");
-        callSproutsApi("87");
-        callSproutsApi("92");
-        callSproutsApi("81");
-        callSproutsApi("94");
-        callSproutsApi("95");
-        callSproutsApi("100");
+        crawlSprouts("68");
+        crawlSprouts("76");
+        crawlSprouts("87");
+        crawlSprouts("92");
+        crawlSprouts("81");
+        crawlSprouts("94");
+        crawlSprouts("95");
+        crawlSprouts("100");
         System.out.println("Grocery Aisles Call");
-        callSproutsApi("132");
+        crawlSprouts("132");
         System.out.println("Frozen Call");
-        callSproutsApi("218");
+        crawlSprouts("218");
         System.out.println("Vitamins & Body Care Call");
-        callSproutsApi("230");
+        crawlSprouts("230");
         System.out.println("Beer & Wine Call");
-        callSproutsApi("269");
+        crawlSprouts("269");
     }
 
-    public ResponseEntity<List<Grocery>> getGroceryByCategory(long id) {
-        List<Grocery> groceries = new ArrayList<>(groceryRepository.findByCategoryId(id));
-        return new ResponseEntity<>(groceries, HttpStatus.OK);
+    public ResponseEntity<List<GroceryItem>> getGroceryByCategory(long id) {
+        List<SproutsGroceryItem> groceries = new ArrayList<>(sproutsRepository.findByCategoryId(id));
+        List<GroceryItem> groceryItemList = new ArrayList<>();
+        groceries.forEach(grocery -> groceryItemList.add(new GroceryItem(grocery)));
+        return new ResponseEntity<>(groceryItemList, HttpStatus.OK);
     }
 }

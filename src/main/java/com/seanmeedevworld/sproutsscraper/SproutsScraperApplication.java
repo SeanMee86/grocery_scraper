@@ -39,10 +39,11 @@ public class SproutsScraperApplication implements CommandLineRunner {
 			switch (command)
 			{
 				case "1":
-					groceryService.setGroceryTable();
+					groceryService.clearSproutsTable();
+					groceryService.setSproutsTable();
 					break;
 				case "2":
-					groceryService.resetGroceryTable();
+					groceryService.clearSproutsTable();
 			}
 		}
 		SpringApplication.exit(applicationContext, () -> 0);
