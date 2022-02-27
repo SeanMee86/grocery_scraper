@@ -1,5 +1,6 @@
 package com.seanmeedevworld.sproutsscraper.Models;
 
+import com.seanmeedevworld.sproutsscraper.AlbertsonsModels.AlbertsonsGroceryItem;
 import com.seanmeedevworld.sproutsscraper.SproutsModels.SproutsGroceryItem;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,5 +24,14 @@ public class GroceryItem {
         this.size = sproutsGroceryItem.getSize_string();
         this.brand = sproutsGroceryItem.getBrand_name();
         this.categoryId = sproutsGroceryItem.getCategoryId();
+    }
+
+    public GroceryItem(AlbertsonsGroceryItem albertsonsGroceryItem) {
+        this.id = albertsonsGroceryItem.getId();
+        this.price = albertsonsGroceryItem.getPrice();
+        this.name = albertsonsGroceryItem.getName();
+        this.size = albertsonsGroceryItem.getSize();
+        this.brand = albertsonsGroceryItem.getBrand_name();
+        this.categoryId = albertsonsGroceryItem.getCategoryId();
     }
 }

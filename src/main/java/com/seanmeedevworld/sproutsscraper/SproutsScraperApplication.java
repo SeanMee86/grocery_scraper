@@ -1,5 +1,6 @@
 package com.seanmeedevworld.sproutsscraper;
 
+import com.seanmeedevworld.sproutsscraper.Service.AlbertsonsService;
 import com.seanmeedevworld.sproutsscraper.Service.SproutsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -14,7 +15,8 @@ public class SproutsScraperApplication implements CommandLineRunner {
 
 	@Autowired
 	SproutsService sproutsService;
-
+	@Autowired
+	AlbertsonsService albertsonsService;
 	@Autowired
 	ApplicationContext applicationContext;
 
@@ -33,6 +35,8 @@ public class SproutsScraperApplication implements CommandLineRunner {
 			System.out.println("******* Choose a command ********");
 			System.out.println("1: Update Sprouts Table");
 			System.out.println("2: Clear Sprouts Table");
+			System.out.println("3: Update Albertsons Table");
+			System.out.println("4: Clear Albertsons Table");
 			System.out.println("Exit: Stop Application");
 			Scanner scanner = new Scanner(System.in);
 			command = scanner.next();
@@ -44,6 +48,13 @@ public class SproutsScraperApplication implements CommandLineRunner {
 					break;
 				case "2":
 					sproutsService.clearTable();
+					break;
+				case "3":
+					albertsonsService.clearTable();
+					albertsonsService.setTable();
+					break;
+				case "4":
+					albertsonsService.clearTable();
 			}
 		}
 		SpringApplication.exit(applicationContext, () -> 0);
