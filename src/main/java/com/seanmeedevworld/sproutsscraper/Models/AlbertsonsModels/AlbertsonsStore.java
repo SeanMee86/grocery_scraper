@@ -1,4 +1,4 @@
-package com.seanmeedevworld.sproutsscraper.AlbertsonsModels;
+package com.seanmeedevworld.sproutsscraper.Models.AlbertsonsModels;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -16,12 +16,12 @@ public class SproutsScraperController {
     SproutsService sproutsService;
 
     @GetMapping("/")
-    public ResponseEntity<List<GroceryItem>> getAllSprouts() throws Exception {
+    public ResponseEntity<List<GroceryItem>> getAllGroceries() throws Exception {
         return sproutsService.getAllGroceries();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<List<GroceryItem>> getProduce(@PathVariable String id) throws Exception {
+    public ResponseEntity<List<GroceryItem>> getGroceriesById(@PathVariable String id) throws Exception {
         return sproutsService.getGroceryByCategory(Long.parseLong(id));
     }
 }

@@ -1,4 +1,4 @@
-package com.seanmeedevworld.sproutsscraper.SproutsModels;
+package com.seanmeedevworld.sproutsscraper.Models.SproutsModels;
 
 import lombok.Getter;
 import lombok.Setter;

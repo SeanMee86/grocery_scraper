@@ -1,7 +1,7 @@
 package com.seanmeedevworld.sproutsscraper.Service;
 
-import com.seanmeedevworld.sproutsscraper.AlbertsonsModels.AlbertsonsGroceryItem;
-import com.seanmeedevworld.sproutsscraper.AlbertsonsModels.AlbertsonsStore;
+import com.seanmeedevworld.sproutsscraper.Models.AlbertsonsModels.AlbertsonsGroceryItem;
+import com.seanmeedevworld.sproutsscraper.Models.AlbertsonsModels.AlbertsonsStore;
 import com.seanmeedevworld.sproutsscraper.Models.GroceryItem;
 import com.seanmeedevworld.sproutsscraper.Repository.AlbertsonsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -130,7 +130,7 @@ public class AlbertsonsService implements GroceryService<AlbertsonsGroceryItem> 
 
     @Override
     public ResponseEntity<List<GroceryItem>> getAllGroceries() {
-        return null;
+        return new ResponseEntity<>(transformGrocery(albertsonsRepository.findAll()), HttpStatus.OK);
     }
 
     public ResponseEntity<List<GroceryItem>> getGroceryByCategory(long id) {

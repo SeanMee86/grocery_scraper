@@ -1,7 +1,7 @@
 package com.seanmeedevworld.sproutsscraper.Models;
 
-import com.seanmeedevworld.sproutsscraper.AlbertsonsModels.AlbertsonsGroceryItem;
-import com.seanmeedevworld.sproutsscraper.SproutsModels.SproutsGroceryItem;
+import com.seanmeedevworld.sproutsscraper.Models.AlbertsonsModels.AlbertsonsGroceryItem;
+import com.seanmeedevworld.sproutsscraper.Models.SproutsModels.SproutsGroceryItem;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

@@ -1,8 +1,8 @@
 package com.seanmeedevworld.sproutsscraper.Service;
 
-import com.seanmeedevworld.sproutsscraper.SproutsModels.SproutsGroceryItem;
+import com.seanmeedevworld.sproutsscraper.Models.SproutsModels.SproutsGroceryItem;
 import com.seanmeedevworld.sproutsscraper.Models.GroceryItem;
-import com.seanmeedevworld.sproutsscraper.SproutsModels.SproutsStore;
+import com.seanmeedevworld.sproutsscraper.Models.SproutsModels.SproutsStore;
 import com.seanmeedevworld.sproutsscraper.Repository.SproutsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;

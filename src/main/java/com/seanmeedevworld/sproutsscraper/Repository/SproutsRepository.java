@@ -1,6 +1,6 @@
 package com.seanmeedevworld.sproutsscraper.Repository;
 
-import com.seanmeedevworld.sproutsscraper.SproutsModels.SproutsGroceryItem;
+import com.seanmeedevworld.sproutsscraper.Models.SproutsModels.SproutsGroceryItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
